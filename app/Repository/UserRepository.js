@@ -6,7 +6,7 @@ constructor(req, res) {
     this.res = res
 }
    async all() {
-       const results = await this.db.client.query("SELECT * FROM users");
+       const results = await this.db.client.query("SELECT id, name, email, created_at, updated_at FROM users");
        const users = results.rows;
        this.res.write(JSON.stringify(users));
        this.res.end();
