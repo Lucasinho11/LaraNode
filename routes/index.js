@@ -10,7 +10,8 @@ module.exports = class routes {
       const router = new Router(this.req, this.res)
 
     // router.get("/", function(req, res) {
-
+    //   res.write('index');
+    //   res.end()
     //   });
     // router.get("/users", (req, res) => {
     //     const userController = new UserController(req, res);

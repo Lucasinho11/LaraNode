@@ -21,21 +21,14 @@ module.exports = class Router {
             }
         })
     }
-    get(url) {
-        return new Promise((resolve, reject) => {
-            try {
-                resolve(url)
-                if(this.req.method === 'GET' && url == '/'){
-                    this.res.writeHead(200, { "Content-type": "text/plain" })
-                    this.res.end()
-                }
-                if(this.req.method === 'GET' && url == '/users'){
-                    console.log('test')
-                }
-            } catch (error) {
-                reject(error)
-            }
-        })
+    get(url, callback) {
+        if(this.req.url == url && this.req.method == 'GET'){
+            return callback(this.req, this.res)
+        }
+        else{
+            this.res.writeHead(405, { "Content-type": "text/plain" })
+            this.res.end(`error ${this.res.statusCode} Method not allowed`)    
+        }
     }
     post(){
         // if(this.req.url == '/users' && this.req.method === 'POST'){
